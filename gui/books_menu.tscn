@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://jcf342qtf2fb"]
+
+[ext_resource type="Script" uid="uid://dipw85r15cp3m" path="res://gui/title_menu.gd" id="1_b3uu1"]
+[ext_resource type="Script" uid="uid://b7afimshqn0ad" path="res://gui/hover_highlight.gd" id="2_v87ed"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_036b0"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkg7o"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
+size = Vector3(0.64624023, 0.12207031, 0.049072266)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkg7o"]
+size = Vector3(0.7519531, 0.055664063, 0.03515625)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwbse"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbfbk"]
+size = Vector3(0.6989746, 0.15600586, 0.07421875)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ioo17"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
+size = Vector3(0.81152344, 0.09667969, 0.05078125)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ic0uy"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k3n1d"]
+size = Vector3(0.9082031, 0.115478516, 0.030273438)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o6r5"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_70uel"]
+size = Vector3(0.73217773, 0.068359375, 0.040039063)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqwa"]
+next_pass = SubResource("StandardMaterial3D_036b0")
+shading_mode = 0
+albedo_color = Color(0.8397683, 0.9034447, 0.83953136, 1)
+grow_amount = -3.0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
+size = Vector3(0.72875977, 0.14672852, 0.028320313)
+
+[node name="BooksMenu" type="Node3D" unique_id=718823562]
+process_mode = 3
+script = ExtResource("1_b3uu1")
+
+[node name="Load" type="CSGBox3D" parent="." unique_id=1294449613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.692, 0.35545245, 0)
+size = Vector3(0.6478882, 0.12238769, 0.015)
+material = SubResource("StandardMaterial3D_pkg7o")
+script = ExtResource("2_v87ed")
+
+[node name="Label3D" type="Label3D" parent="Load" unique_id=734757897]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "load"
+outline_size = 6
+
+[node name="Area3D" type="Area3D" parent="Load" unique_id=1535378325]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Load/Area3D" unique_id=2054446015]
+shape = SubResource("BoxShape3D_036b0")
+
+[node name="Save" type="CSGBox3D" parent="." unique_id=997321562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6055839, 0.25477087, 0)
+size = Vector3(0.7462158, 0.058666993, 0.015)
+material = SubResource("StandardMaterial3D_gbfbk")
+script = ExtResource("2_v87ed")
+
+[node name="Label3D" type="Label3D" parent="Save" unique_id=1602227419]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "save"
+outline_size = 6
+
+[node name="Area3D" type="Area3D" parent="Save" unique_id=1933350009]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Save/Area3D" unique_id=13061094]
+shape = SubResource("BoxShape3D_pkg7o")
+
+[node name="Continue" type="CSGBox3D" parent="." unique_id=2085513472]
+transform = Transform3D(1, 0, 0, 0, 0.99946404, 0.03273653, 0, -0.03273653, 0.99946404, 0.6925819, 0.13254377, 0)
+size = Vector3(0.7033539, 0.15361328, 0.015)
+material = SubResource("StandardMaterial3D_dwbse")
+script = ExtResource("2_v87ed")
+
+[node name="Label3D" type="Label3D" parent="Continue" unique_id=1174682659]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "continue"
+outline_size = 6
+
+[node name="Area3D" type="Area3D" parent="Continue" unique_id=646362336]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Continue/Area3D" unique_id=1073651398]
+shape = SubResource("BoxShape3D_gbfbk")
+
+[node name="Index" type="CSGBox3D" parent="." unique_id=1731995410]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6198051, 0.0018465491, 0)
+size = Vector3(0.814209, 0.1, 0.015)
+material = SubResource("StandardMaterial3D_ioo17")
+script = ExtResource("2_v87ed")
+
+[node name="Label3D" type="Label3D" parent="Index" unique_id=1273658786]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "index"
+outline_size = 6
+
+[node name="Area3D" type="Area3D" parent="Index" unique_id=999661636]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Index/Area3D" unique_id=1995930997]
+shape = SubResource("BoxShape3D_wse8f")
+
+[node name="NewGame" type="CSGBox3D" parent="." unique_id=316481696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5702064, -0.11693466, 0)
+size = Vector3(0.9097748, 0.11396484, 0.015)
+material = SubResource("StandardMaterial3D_ic0uy")
+script = ExtResource("2_v87ed")
+
+[node name="Label3D" type="Label3D" parent="NewGame" unique_id=1762407799]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "new game"
+outline_size = 6
+
+[node name="Area3D" type="Area3D" parent="NewGame" unique_id=1092087147]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NewGame/Area3D" unique_id=1076880750]
+shape = SubResource("BoxShape3D_k3n1d")
+
+[node name="Settings" type="CSGBox3D" parent="." unique_id=618090588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6281669, -0.22737919, 0)
+size = Vector3(0.7298584, 0.064648435, 0.015)
+material = SubResource("StandardMaterial3D_2o6r5")
+script = ExtResource("2_v87ed")
+
+[node name="Label3D" type="Label3D" parent="Settings" unique_id=686322724]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "settings"
+outline_size = 6
+
+[node name="Area3D" type="Area3D" parent="Settings" unique_id=403380954]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Settings/Area3D" unique_id=1464559328]
+shape = SubResource("BoxShape3D_70uel")
+
+[node name="Return" type="CSGBox3D" parent="." unique_id=1992779065]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6846664, -0.35404727, 0)
+size = Vector3(0.72930145, 0.14960937, 0.015)
+material = SubResource("StandardMaterial3D_hiqwa")
+
+[node name="Label3D" type="Label3D" parent="Return" unique_id=1058208483]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376132)
+text = "return"
+outline_size = 6
+
+[node name="ReturnArea" type="Area3D" parent="Return" unique_id=406858933]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Return/ReturnArea" unique_id=787178676]
+shape = SubResource("BoxShape3D_dwbse")
+
+[connection signal="mouse_entered" from="Load/Area3D" to="Load" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Load/Area3D" to="Load" method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="Save/Area3D" to="Save" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Save/Area3D" to="Save" method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="Continue/Area3D" to="Continue" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Continue/Area3D" to="Continue" method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="Index/Area3D" to="Index" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Index/Area3D" to="Index" method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="NewGame/Area3D" to="NewGame" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="NewGame/Area3D" to="NewGame" method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="Settings/Area3D" to="Settings" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Settings/Area3D" to="Settings" method="_on_area_3d_mouse_exited"]
+[connection signal="input_event" from="Return/ReturnArea" to="." method="_on_return_area_input_event"]
+[connection signal="mouse_entered" from="Return/ReturnArea" to="." method="_on_return_area_mouse_entered"]
+[connection signal="mouse_exited" from="Return/ReturnArea" to="." method="_on_return_area_mouse_exited"]

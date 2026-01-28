@@ -1,0 +1,17 @@
+[gd_resource type="Theme" format=3 uid="uid://b46ohwdng7dni"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hkwqb"]
+bg_color = Color(0.85664165, 0.9145296, 0.8565292, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_hkwqb")
+RichTextLabel/colors/default_color = Color(0.13333334, 0.13725491, 0.13725491, 1)

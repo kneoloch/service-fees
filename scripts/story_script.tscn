@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b2gseublg16uq"]
+
+[ext_resource type="Script" uid="uid://b8psvia60ktq4" path="res://scripts/story_script.gd" id="1_5fvki"]
+[ext_resource type="PackedScene" uid="uid://55kw6mc00bvq" path="res://scenes/scene_test0.tscn" id="2_nitl4"]
+[ext_resource type="PackedScene" uid="uid://bc0guc3bqxrw1" path="res://scenes/scene_test1.tscn" id="3_jui10"]
+[ext_resource type="PackedScene" uid="uid://c4n3lueddnpwe" path="res://scenes/end.tscn" id="4_kmua2"]
+
+[node name="Story Test Script" type="Node" unique_id=1113241242 node_paths=PackedStringArray("current_scene")]
+script = ExtResource("1_5fvki")
+current_scene = NodePath("Test 0")
+
+[node name="Test 0" parent="." unique_id=1356330160 instance=ExtResource("2_nitl4")]
+
+[node name="Test 1" parent="." unique_id=1440890912 instance=ExtResource("3_jui10")]
+
+[node name="End" parent="." unique_id=1821304151 instance=ExtResource("4_kmua2")]

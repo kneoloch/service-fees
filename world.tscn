@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://caujvinabc6qi"]
+
+[ext_resource type="Texture2D" uid="uid://bvb3gj7fi6u1c" path="res://icon.svg" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://b2gseublg16uq" path="res://scripts/story_script.tscn" id="2_aqk2v"]
+[ext_resource type="Script" uid="uid://c2acnks1ega0d" path="res://gui/text_panel.gd" id="2_fj7yv"]
+[ext_resource type="Theme" uid="uid://b46ohwdng7dni" path="res://light_theme.tres" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://jcf342qtf2fb" path="res://gui/books_menu.tscn" id="3_036b0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
+shading_mode = 0
+albedo_color = Color(0.9411765, 0.9647059, 0.9411765, 1)
+
+[node name="World" type="Node3D" unique_id=1230243544]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1233746477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.048518382)
+size = Vector3(1.8, 1, 0.006)
+material = SubResource("StandardMaterial3D_f3sb7")
+
+[node name="LeftSprite" type="Sprite3D" parent="." unique_id=244292461]
+transform = Transform3D(0.205, 0, 0, 0, 0.205, 0, 0, 0, 0.205, -0.5, 0, 0)
+visible = false
+texture = ExtResource("1_f3sb7")
+
+[node name="RightSprite" type="Sprite3D" parent="." unique_id=1706536789]
+transform = Transform3D(0.205, 0, 0, 0, 0.205, 0, 0, 0, 0.205, 0.5, 0, 0)
+visible = false
+texture = ExtResource("1_f3sb7")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1350966055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+
+[node name="StoryTestScript" parent="." unique_id=1113241242 instance=ExtResource("2_aqk2v")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1260896303]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1805547081]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 648.1323
+offset_right = 646.72876
+offset_bottom = 125.132324
+grow_vertical = 2
+rotation = -1.5707964
+theme_override_colors/default_color = Color(0.9411765, 0.9647059, 0.9411765, 1)
+theme_override_colors/font_outline_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 91
+bbcode_enabled = true
+text = "SERVICE FEES"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1622648694]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 639.0
+offset_top = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1295027065]
+own_world_3d = true
+transparent_bg = true
+physics_object_picking = true
+
+[node name="BooksMenu" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=718823562 instance=ExtResource("3_036b0")]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=900626378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43234962, 0, 0.58603114)
+
+[node name="TextPanel" type="PanelContainer" parent="CanvasLayer" unique_id=474017248 node_paths=PackedStringArray("story_script")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -1.0
+offset_right = 1.5
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_tlwt5")
+script = ExtResource("2_fj7yv")
+story_script = NodePath("../../StoryTestScript")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextPanel" unique_id=1537156704]
+layout_mode = 2
+theme = ExtResource("2_tlwt5")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
