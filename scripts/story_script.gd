@@ -57,7 +57,7 @@ func check_for_executable() -> bool:
 	if current_scene.script_lines.get(current_line)["METHOD"] == "":
 		return false
 	else:
-		print("-- Executing method: %s" % current_scene.script_lines.get(current_line)["METHOD"])
+		#print("-- Executing method: %s" % current_scene.script_lines.get(current_line)["METHOD"])
 		var callable = Callable(current_scene, str(current_scene.script_lines.get(current_line)["METHOD"]))
 		callable.call()
 		return true

@@ -178,9 +178,9 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0492208, 0, 0.028376
 text = "new game"
 outline_size = 6
 
-[node name="Area3D" type="Area3D" parent="NewGame" unique_id=1092087147]
+[node name="NewGameArea" type="Area3D" parent="NewGame" unique_id=1092087147]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NewGame/Area3D" unique_id=1076880750]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NewGame/NewGameArea" unique_id=1076880750]
 shape = SubResource("BoxShape3D_k3n1d")
 
 [node name="Settings" type="CSGBox3D" parent="." unique_id=618090588]
@@ -223,8 +223,9 @@ shape = SubResource("BoxShape3D_dwbse")
 [connection signal="mouse_exited" from="Continue/Area3D" to="Continue" method="_on_area_3d_mouse_exited"]
 [connection signal="mouse_entered" from="Index/Area3D" to="Index" method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Index/Area3D" to="Index" method="_on_area_3d_mouse_exited"]
-[connection signal="mouse_entered" from="NewGame/Area3D" to="NewGame" method="_on_area_3d_mouse_entered"]
-[connection signal="mouse_exited" from="NewGame/Area3D" to="NewGame" method="_on_area_3d_mouse_exited"]
+[connection signal="input_event" from="NewGame/NewGameArea" to="." method="_on_new_game_area_input_event"]
+[connection signal="mouse_entered" from="NewGame/NewGameArea" to="NewGame" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="NewGame/NewGameArea" to="NewGame" method="_on_area_3d_mouse_exited"]
 [connection signal="mouse_entered" from="Settings/Area3D" to="Settings" method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Settings/Area3D" to="Settings" method="_on_area_3d_mouse_exited"]
 [connection signal="input_event" from="Return/ReturnArea" to="." method="_on_return_area_input_event"]

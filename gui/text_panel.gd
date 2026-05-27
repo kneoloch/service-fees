@@ -1,7 +1,7 @@
 extends PanelContainer
 class_name TextPanel
 
-@onready var label: RichTextLabel = $RichTextLabel
+@onready var label: RichTextLabel = %RichTextLabel
 @export var text_speed: float = 0.05
 @export var story_script: StoryScript
 var true_center: Vector2 
@@ -13,6 +13,9 @@ func _ready() -> void:
 	_reset_panel()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Story.paused:
+		return
+	
 	if event.is_action_released("ui_accept"):
 		_advance_script()
 	
