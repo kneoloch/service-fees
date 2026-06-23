@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bj7eangsgriej"]
+
+[ext_resource type="FontFile" uid="uid://bvf5lt8dyaneu" path="res://assets/fonts/georgia.ttf" id="1_5hgxu"]
+[ext_resource type="Script" uid="uid://d2rqxf2o0rkxy" path="res://gui/narrative_text.gd" id="1_85iyj"]
+
+[node name="NarrativeText" type="RichTextLabel" unique_id=1244828083]
+offset_right = 300.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 0.78431374)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.039215688)
+theme_override_fonts/normal_font = ExtResource("1_5hgxu")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
+bbcode_enabled = true
+text = "text"
+fit_content = true
+script = ExtResource("1_85iyj")

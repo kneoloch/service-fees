@@ -1,40 +1,233 @@
 [gd_scene format=3 uid="uid://caujvinabc6qi"]
 
-[ext_resource type="PackedScene" uid="uid://b2gseublg16uq" path="res://scripts/story_script.tscn" id="2_aqk2v"]
-[ext_resource type="Script" uid="uid://c2acnks1ega0d" path="res://gui/text_panel.gd" id="2_fj7yv"]
-[ext_resource type="Theme" uid="uid://b46ohwdng7dni" path="res://light_theme.tres" id="2_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://b26t45uvvp74h" path="res://assets/servicefees_bg.png" id="1_036b0"]
+[ext_resource type="Texture2D" uid="uid://djsd4hvlrtksh" path="res://assets/servicefees_c0_1.png" id="1_aqk2v"]
+[ext_resource type="Script" uid="uid://ggaw50h1emfy" path="res://scripts/StoryManager.gd" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://60h2qea3ok5k" path="res://gui/narrative_text_3d.tscn" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://jcf342qtf2fb" path="res://gui/books_menu.tscn" id="3_036b0"]
+[ext_resource type="Script" uid="uid://cuc3phnja4odf" path="res://scripts/camera.gd" id="4_pkg7o"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
-shading_mode = 0
-albedo_color = Color(0.9411765, 0.9647059, 0.9411765, 1)
+[sub_resource type="Environment" id="Environment_aqk2v"]
+background_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwbse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_036b0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqk2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aqk2v")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="World" type="Node3D" unique_id=1230243544]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1233746477]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.048518382)
-size = Vector3(1.8, 1, 0.006)
-material = SubResource("StandardMaterial3D_f3sb7")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=290138068]
+environment = SubResource("Environment_aqk2v")
+
+[node name="Background" type="AnimatedSprite3D" parent="." unique_id=651390793]
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_dwbse")
+
+[node name="TextLayer" type="Node3D" parent="." unique_id=1188056677]
+
+[node name="NarrativeText3D" parent="TextLayer" unique_id=963429866 instance=ExtResource("2_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -0.5, 0.5)
+text = "A royal signet ring sits at the far left corner of Chaeyeon's work desk, polished to a bright, gleaming gold, and catches light off the orange sun through the window."
+font_size = 41
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=2082097423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22515535, -0.12976575, 0.32369864)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_aqk2v")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1350966055]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
+current = true
+script = ExtResource("4_pkg7o")
 
-[node name="StoryTestScript" parent="." unique_id=1113241242 instance=ExtResource("2_aqk2v")]
+[node name="StoryManager" type="Node" parent="." unique_id=1750701168 node_paths=PackedStringArray("text_layer", "camera")]
+script = ExtResource("1_fj7yv")
+text_layer = NodePath("../CanvasLayer/TextLayer")
+NARRATIVE_TEXT = ExtResource("2_dwbse")
+camera = NodePath("../Camera3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1260896303]
 
-[node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=1805547081]
-anchors_preset = 9
+[node name="Position" type="Control" parent="CanvasLayer" unique_id=804129983]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 648.1323
-offset_right = 646.72876
-offset_bottom = 125.132324
+grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="top_left" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1375217783]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+
+[node name="center_top" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1424401762]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 16.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="top_right" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1015815657]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="left" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=665130823]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="center" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=783725205]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="center_right" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=841303197]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="bottom_left" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=639213704]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 16.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="center_bottom" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1902582550]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="bottom_right" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1270849006]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Position" unique_id=925384694]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(1, 0, 0, 0.39215687)
+
+[node name="TextLayer" type="Control" parent="CanvasLayer" unique_id=756171878]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/TextLayer" unique_id=1805547081]
+visible = false
+texture_filter = 2
+layout_mode = 1
+offset_left = 2.3556646e-05
+offset_top = 538.9132
+offset_right = 539.9132
+offset_bottom = 636.9132
 rotation = -1.5707964
 theme_override_colors/default_color = Color(0.9411765, 0.9647059, 0.9411765, 1)
 theme_override_colors/font_outline_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 91
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "SERVICE FEES"
 fit_content = true
@@ -42,12 +235,13 @@ horizontal_alignment = 1
 
 [node name="MainMenu" type="SubViewportContainer" parent="CanvasLayer" unique_id=1622648694 groups=["main_menu"]]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 640.0
-offset_top = 77.0
-offset_bottom = -59.0
+offset_left = 448.0
+offset_top = 23.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -56,44 +250,10 @@ own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 physics_object_picking = true
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="BooksMenu" parent="CanvasLayer/MainMenu/SubViewport" unique_id=718823562 instance=ExtResource("3_036b0")]
 unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/MainMenu/SubViewport" unique_id=900626378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43234962, 0, 0.58603114)
-
-[node name="Panels" type="Control" parent="CanvasLayer" unique_id=106600121 groups=["panels"]]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-
-[node name="TextPanel" type="PanelContainer" parent="CanvasLayer/Panels" unique_id=474017248 node_paths=PackedStringArray("story_script")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 574.5
-offset_top = 323.0
-offset_right = 577.5
-offset_bottom = 325.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("2_tlwt5")
-script = ExtResource("2_fj7yv")
-story_script = NodePath("../../../StoryTestScript")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panels/TextPanel" unique_id=1537156704]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_tlwt5")
-bbcode_enabled = true
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1

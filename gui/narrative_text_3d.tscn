@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://60h2qea3ok5k"]
+
+[ext_resource type="FontFile" uid="uid://bvf5lt8dyaneu" path="res://assets/fonts/georgia.ttf" id="1_yntdq"]
+
+[node name="NarrativeText3D" type="Label3D" unique_id=963429866]
+alpha_cut = 1
+texture_filter = 1
+modulate = Color(0, 0, 0, 1)
+text = "text"
+font = ExtResource("1_yntdq")
+font_size = 64
+outline_size = 0
+horizontal_alignment = 0
+autowrap_mode = 3
