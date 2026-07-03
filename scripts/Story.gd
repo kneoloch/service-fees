@@ -1,4 +1,7 @@
 extends Node
 
+@warning_ignore("unused_signal")
+signal pause()
+
 var end: bool = false
-var paused: bool = true
+var object_collision: bool = false

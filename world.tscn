@@ -5,10 +5,26 @@
 [ext_resource type="Script" uid="uid://ggaw50h1emfy" path="res://scripts/StoryManager.gd" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://60h2qea3ok5k" path="res://gui/narrative_text_3d.tscn" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://jcf342qtf2fb" path="res://gui/books_menu.tscn" id="3_036b0"]
+[ext_resource type="ArrayMesh" uid="uid://g0sw0cqurcnn" path="res://assets/signet_ring.obj" id="4_ioo17"]
 [ext_resource type="Script" uid="uid://cuc3phnja4odf" path="res://scripts/camera.gd" id="4_pkg7o"]
+[ext_resource type="Shader" uid="uid://b8f3efv0iqok0" path="res://shaders/outline.gdshader" id="4_wse8f"]
+[ext_resource type="PackedScene" uid="uid://co60rbuob5q11" path="res://gui/pop_up_context_area.tscn" id="5_2u3nc"]
+[ext_resource type="Script" uid="uid://bbojrkdos25ni" path="res://scripts/interaction/rotate.gd" id="5_gbfbk"]
+[ext_resource type="Script" uid="uid://dovww5qdyrfex" path="res://scripts/interaction/highlight_text.gd" id="7_ic0uy"]
+[ext_resource type="Shader" uid="uid://k3qv882otc3j" path="res://shaders/pixel_post_processor.gdshader" id="7_wse8f"]
+[ext_resource type="PackedScene" uid="uid://canrq1bq1l4ln" path="res://assets/stage_light_3d.tscn" id="9_cbp6q"]
+[ext_resource type="Script" uid="uid://ove1133mlkaw" path="res://scripts/interaction/pop_up_context.gd" id="10_70uel"]
+[ext_resource type="ArrayMesh" uid="uid://cnn1qdwguy50b" path="res://assets/paper_stack.obj" id="10_udxuc"]
+[ext_resource type="Texture2D" uid="uid://dscf5i26ofu2h" path="res://assets/erase.png" id="11_ikiii"]
+[ext_resource type="PackedScene" uid="uid://55kw6mc00bvq" path="res://scenes/scene_test0.tscn" id="11_k3n1d"]
+[ext_resource type="FontFile" uid="uid://bvf5lt8dyaneu" path="res://assets/fonts/georgia.ttf" id="13_2o6r5"]
+[ext_resource type="Script" uid="uid://bvncef4eld8yt" path="res://gui/GUI.gd" id="13_hiqwa"]
+[ext_resource type="Texture2D" uid="uid://dd8vq66aw36es" path="res://assets/seoyeon_signature.png" id="14_26xuy"]
+[ext_resource type="Texture2D" uid="uid://de74o8is17cj2" path="res://assets/sigil.png" id="15_bc84e"]
 
 [sub_resource type="Environment" id="Environment_aqk2v"]
 background_mode = 1
+background_color = Color(0.05882353, 0.02745098, 0, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dwbse"]
 animations = [{
@@ -32,228 +48,486 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+shading_mode = 2
+albedo_color = Color(0.9490196, 0.827451, 0.654902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(10.375803, 0.55444336, 5.722646)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqes2"]
+shading_mode = 2
+albedo_color = Color(0.9490196, 0.827451, 0.654902, 1)
+stencil_flags = 2
+stencil_outline_thickness = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wse8f"]
+render_priority = 0
+shader = ExtResource("4_wse8f")
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/scissor_value = 0.5
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/outline_size = 0.2
+shader_parameter/offset_fres = 0.3
+shader_parameter/fps = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ic0uy"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_wse8f")
+shader = ExtResource("4_wse8f")
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/scissor_value = 0.5
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/outline_size = 0.2
+shader_parameter/offset_fres = 0.3
+shader_parameter/fps = 5.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+radius = 5.800463
+
+[sub_resource type="Gradient" id="Gradient_ic0uy"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hiqwa"]
+gradient = SubResource("Gradient_ic0uy")
+width = 16
+height = 10
+
+[sub_resource type="Gradient" id="Gradient_k3n1d"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_70uel"]
+gradient = SubResource("Gradient_k3n1d")
+width = 16
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_2o6r5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_2o6r5")
+width = 37
+height = 19
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 0.17237923
+
+[sub_resource type="Gradient" id="Gradient_70uel"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yf5fn"]
+gradient = SubResource("Gradient_70uel")
+width = 1293
+height = 539
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u3nc"]
+shading_mode = 2
+albedo_color = Color(0.9490196, 0.827451, 0.654902, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udxuc"]
+render_priority = 0
+shader = ExtResource("4_wse8f")
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/scissor_value = 0.5
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/outline_size = 0.2
+shader_parameter/offset_fres = 0.3
+shader_parameter/fps = 5.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hiqwa"]
+radius = 5.291639
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbp6q"]
+atlas = ExtResource("11_ikiii")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26xuy"]
+atlas = ExtResource("11_ikiii")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbp6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26xuy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikiii"]
+shading_mode = 2
+albedo_color = Color(0.9490196, 0.827451, 0.654902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cbp6q"]
+size = Vector3(18.709873, 0.55444336, 9.486362)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6sy2"]
+shading_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bc84e"]
+render_priority = 0
+shader = ExtResource("4_wse8f")
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/scissor_value = 0.5
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/outline_size = 0.005
+shader_parameter/offset_fres = 0.3
+shader_parameter/fps = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26xuy"]
+render_priority = 0
+shader = ExtResource("4_wse8f")
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/scissor_value = 0.5
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/outline_size = 0.005
+shader_parameter/offset_fres = 0.3
+shader_parameter/fps = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wukud"]
+render_priority = 0
+shader = ExtResource("4_wse8f")
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/scissor_value = 0.5
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/outline_size = 0.005
+shader_parameter/offset_fres = 0.3
+shader_parameter/fps = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioo17"]
+render_priority = -100
+shader = ExtResource("7_wse8f")
+shader_parameter/zNear = 0.05
+shader_parameter/zFar = 100.0
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/outline_thickness = 5.0
+shader_parameter/enable_color_limit = true
+shader_parameter/color_levels = 8
+shader_parameter/enable_color_palette = true
+shader_parameter/color1 = Color(1, 0.9529412, 0.7411765, 1)
+shader_parameter/color2 = Color(1, 0.831, 0.639, 1)
+shader_parameter/color3 = Color(1, 0.667, 0.369, 1)
+shader_parameter/color4 = Color(0.816, 0.506, 0.349, 1)
+shader_parameter/color5 = Color(0.553, 0.412, 0.478, 1)
+shader_parameter/color6 = Color(0.329, 0.306, 0.408, 1)
+shader_parameter/color7 = Color(0.05882353, 0.02745098, 0, 1)
+shader_parameter/color8 = Color(0, 0.16862746, 1, 1)
+shader_parameter/enable_dithering = true
+shader_parameter/dither_strength = 0.10000000475
+shader_parameter/pixel_size = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_gbfbk"]
+material = SubResource("ShaderMaterial_ioo17")
+flip_faces = true
+size = Vector2(20, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0.05882353, 0.02745098, 0, 1)
+shadow_color = Color(0.5921569, 0.8039216, 0.1764706, 1)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
 [node name="World" type="Node3D" unique_id=1230243544]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=290138068]
 environment = SubResource("Environment_aqk2v")
 
-[node name="Background" type="AnimatedSprite3D" parent="." unique_id=651390793]
+[node name="Panel_0" type="Node3D" parent="." unique_id=311188345]
+metadata/_edit_lock_ = true
+
+[node name="Background" type="AnimatedSprite3D" parent="Panel_0" unique_id=651390793]
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_dwbse")
 
-[node name="TextLayer" type="Node3D" parent="." unique_id=1188056677]
-
-[node name="NarrativeText3D" parent="TextLayer" unique_id=963429866 instance=ExtResource("2_dwbse")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -0.5, 0.5)
-text = "A royal signet ring sits at the far left corner of Chaeyeon's work desk, polished to a bright, gleaming gold, and catches light off the orange sun through the window."
-font_size = 41
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=2082097423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22515535, -0.12976575, 0.32369864)
+[node name="Chaeyeon" type="AnimatedSprite3D" parent="Panel_0" unique_id=2082097423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.443, 0.143, 0.324)
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_aqk2v")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1350966055]
+[node name="Table" type="MeshInstance3D" parent="Panel_0" unique_id=763915022]
+transform = Transform3D(0.96893734, 0.022042707, -0.24632205, 0, 0.9960199, 0.08913119, 0.24730633, -0.086362526, 0.965081, -1.03687, -2.176571, 0.27918133)
+material_override = SubResource("StandardMaterial3D_57qmd")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="SignetRing" type="MeshInstance3D" parent="Panel_0" unique_id=1389478258 node_paths=PackedStringArray("object")]
+transform = Transform3D(0.036916923, 0, -0.092936225, -6.2366573e-10, 0.099999994, -4.4815973e-10, 0.09293622, 0, 0.03691692, -2.199, 0.7459998, 0.623)
+visible = false
+material_override = SubResource("StandardMaterial3D_aqes2")
+material_overlay = SubResource("ShaderMaterial_ic0uy")
+mesh = ExtResource("4_ioo17")
+script = ExtResource("5_gbfbk")
+object = NodePath(".")
+
+[node name="PopUpArea" type="Area3D" parent="Panel_0/SignetRing" unique_id=751441693]
+script = ExtResource("10_70uel")
+pop_up_text = "The princess's idea of a joke."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Panel_0/SignetRing/PopUpArea" unique_id=1707712922]
+shape = SubResource("SphereShape3D_yf5fn")
+
+[node name="Line_0" parent="Panel_0" unique_id=963429866 instance=ExtResource("2_dwbse")]
+transform = Transform3D(1, -1.8626451e-09, -1.3877788e-17, 1.8626451e-09, 1, 0, 1.387779e-17, -2.5849397e-26, 0.99999994, -3.48, -0.7550001, 0.5)
+text = "A royal signet ring sits at the far left corner of Chaeyeon's work desk, polished to a bright, gleaming gold, and catches light off the orange sun through the window."
+font_size = 41
+
+[node name="text_color" type="Sprite3D" parent="Panel_0/Line_0" unique_id=873787184]
+transform = Transform3D(2.345, 0, 0, 0, 2.345, 0, 0, 0, 2.345, 1.477582, 0.69186866, 0.0095825195)
+modulate = Color(0.9490196, 0.827451, 0.654902, 1)
+texture = SubResource("GradientTexture2D_hiqwa")
+
+[node name="box_highlight" type="Sprite3D" parent="Panel_0/Line_0" unique_id=1538016540]
+transform = Transform3D(2.2649143, -0.159684, 0.58625, 0.31524047, 2.2430522, -0.6069307, -0.51943386, 0.6650131, 2.1879146, 1.445, 0.686, -0.056)
+modulate = Color(0.05882353, 0.02745098, 0, 1)
+render_priority = 1
+texture = SubResource("GradientTexture2D_70uel")
+
+[node name="box_shadow" type="Sprite3D" parent="Panel_0/Line_0" unique_id=2023376036]
+transform = Transform3D(0.9642162, -0.061714247, 0.25783417, 0.08682408, 0.9924039, -0.08715574, -0.25049686, 0.106423184, 0.9622502, 1.427, 0.654, -0.132)
+modulate = Color(0.5921569, 0.8039216, 0.1764706, 1)
+render_priority = 1
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="Area3D" type="Area3D" parent="Panel_0/Line_0" unique_id=1084776630 node_paths=PackedStringArray("mesh", "text", "text_color", "box_highlight", "box_shadow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.477582, 0.72057045, 0.0095825195)
+script = ExtResource("7_ic0uy")
+mesh = NodePath("../../SignetRing")
+text = NodePath("..")
+text_color = NodePath("../text_color")
+box_highlight = NodePath("../box_highlight")
+box_shadow = NodePath("../box_shadow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Panel_0/Line_0/Area3D" unique_id=1717717630]
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0.9647103, 7.70092e-07, 0.494008, 0.41960785)
+
+[node name="Light_0" parent="Panel_0" unique_id=1015164176 instance=ExtResource("9_cbp6q")]
+transform = Transform3D(0.65404105, -0.035696335, 0.7556164, -0.5783674, 0.6202231, 0.5299193, -0.48756695, -0.78361285, 0.38500577, 3.5, 3, 3.5)
+visible = false
+
+[node name="Cam_0" type="Camera3D" parent="Panel_0" unique_id=1350966055 groups=["cameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 current = true
 script = ExtResource("4_pkg7o")
 
-[node name="StoryManager" type="Node" parent="." unique_id=1750701168 node_paths=PackedStringArray("text_layer", "camera")]
-script = ExtResource("1_fj7yv")
-text_layer = NodePath("../CanvasLayer/TextLayer")
-NARRATIVE_TEXT = ExtResource("2_dwbse")
-camera = NodePath("../Camera3D")
+[node name="Panel_1" type="Node3D" parent="." unique_id=1596409659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12760639, 3.2843628)
+metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1260896303]
+[node name="Background" type="Sprite3D" parent="Panel_1" unique_id=194535225]
+transform = Transform3D(0.98554116, 0, -0.16943577, 0, 1, 0, 0.16943577, 0, 0.98554116, -3.7818432, -5.533, -0.31283665)
+modulate = Color(0.9490196, 0.827451, 0.654902, 1)
+texture = SubResource("GradientTexture2D_yf5fn")
 
-[node name="Position" type="Control" parent="CanvasLayer" unique_id=804129983]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="SignetRing" type="MeshInstance3D" parent="Panel_1" unique_id=184004336]
+transform = Transform3D(0.088884, 0.0053428323, -0.013080085, -0.0077126687, 0.08815621, -0.016401196, 0.011838465, 0.01731874, 0.08752091, -6.374, -7.029, 1.116)
+material_override = SubResource("StandardMaterial3D_2u3nc")
+material_overlay = SubResource("ShaderMaterial_udxuc")
+mesh = ExtResource("4_ioo17")
 
-[node name="top_left" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1375217783]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-offset_right = 16.0
-offset_bottom = 16.0
-mouse_filter = 2
+[node name="PopUpContextArea" parent="Panel_1/SignetRing" unique_id=1702465147 node_paths=PackedStringArray("anim") instance=ExtResource("5_2u3nc")]
+pop_up_text = "not even a combustion spell could erase this eyesore"
+anim = NodePath("../Combust")
 
-[node name="center_top" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1424401762]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -8.0
-offset_right = 8.0
-offset_bottom = 16.0
-grow_horizontal = 2
-mouse_filter = 2
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Panel_1/SignetRing/PopUpContextArea" unique_id=585281346]
+transform = Transform3D(1, 3.7252903e-09, -1.4901161e-08, 3.7252903e-09, 0.9999999, 2.9802322e-08, -1.4901161e-08, -2.9802322e-08, 0.9999999, 0, 0, 0)
+shape = SubResource("SphereShape3D_hiqwa")
 
-[node name="top_right" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1015815657]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -16.0
-offset_bottom = 16.0
-grow_horizontal = 0
-mouse_filter = 2
-
-[node name="left" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=665130823]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -8.0
-offset_right = 16.0
-offset_bottom = 8.0
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="center" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=783725205]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="center_right" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=841303197]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="bottom_left" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=639213704]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -16.0
-offset_right = 16.0
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="center_bottom" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1902582550]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="bottom_right" type="ReferenceRect" parent="CanvasLayer/Position" unique_id=1270849006]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Position" unique_id=925384694]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-color = Color(1, 0, 0, 0.39215687)
-
-[node name="TextLayer" type="Control" parent="CanvasLayer" unique_id=756171878]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Title" type="RichTextLabel" parent="CanvasLayer/TextLayer" unique_id=1805547081]
+[node name="Combust" type="AnimatedSprite3D" parent="Panel_1/SignetRing" unique_id=1500446048]
+transform = Transform3D(10.498991, -0.95218104, 3.5101786, 0.24340045, 10.883481, 2.22427, -3.6288795, -2.0248396, 10.304761, 6, 3, 7)
 visible = false
 texture_filter = 2
-layout_mode = 1
-offset_left = 2.3556646e-05
-offset_top = 538.9132
-offset_right = 539.9132
-offset_bottom = 636.9132
-rotation = -1.5707964
-theme_override_colors/default_color = Color(0.9411765, 0.9647059, 0.9411765, 1)
-theme_override_colors/font_outline_color = Color(0.13333334, 0.13725491, 0.13725491, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "SERVICE FEES"
-fit_content = true
-horizontal_alignment = 1
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+frame_progress = 0.91529393
 
-[node name="MainMenu" type="SubViewportContainer" parent="CanvasLayer" unique_id=1622648694 groups=["main_menu"]]
+[node name="Table" type="MeshInstance3D" parent="Panel_1" unique_id=2028228552]
+transform = Transform3D(0.98822826, -0.012003129, -0.15251422, 0, 0.9969171, -0.07845909, 0.15298583, 0.077535495, 0.98518187, -0.935578, -7.8660707, 4.511558)
+material_override = SubResource("StandardMaterial3D_ikiii")
+mesh = SubResource("BoxMesh_cbp6q")
+
+[node name="Line_1" parent="Panel_1" unique_id=1631200470 instance=ExtResource("2_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.125, -6.01, 1.053)
+text = "Chaeyeon eyes the ring over her bowl of noodles, slurping loudly. Maybe if she stares at it for long enough, it would spontaneously combust and spare her from making a decision at all."
+font_size = 31
+width = 456.5
+
+[node name="Light_1" parent="Panel_1" unique_id=142909128 instance=ExtResource("9_cbp6q")]
+transform = Transform3D(-0.45709786, 0.5352642, 0.7103195, 0, -0.7986355, 0.6018151, 0.8894164, 0.2750884, 0.36505458, -10, -4.5, 2)
+
+[node name="Panel_2" type="Node3D" parent="." unique_id=236205794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.562, 0, 4.457)
+
+[node name="PaperStack" type="MeshInstance3D" parent="Panel_2" unique_id=2041694694]
+transform = Transform3D(1.672427, -0.007160863, -0.5942782, -0.030918308, 1.7713077, -0.108354285, 0.5935172, 0.11245143, 1.6689271, -7.346, -7.166, 1.384)
+material_override = SubResource("StandardMaterial3D_c6sy2")
+material_overlay = SubResource("ShaderMaterial_bc84e")
+mesh = ExtResource("10_udxuc")
+
+[node name="Line_2" parent="Panel_2/PaperStack" unique_id=83403398 instance=ExtResource("2_dwbse")]
+transform = Transform3D(-0.07354054, -0.5585948, -2.4416986e-08, 0, -2.4627646e-08, 0.5634156, -0.5585957, 0.07354041, 3.2145575e-09, -0.305, 0.095, 0.6)
+no_depth_test = true
+alpha_scissor_threshold = 0.45
+texture_filter = 3
+text = "It had been a funny little after thought of a gift. For the past fortnight Chaeyeon had been visiting the castle's solar twice a day, much to the princess' growing ire.
+"
+font_size = 22
+line_spacing = 20.0
+width = 443.33
+
+[node name="PaperStack2" type="MeshInstance3D" parent="Panel_2" unique_id=348001202]
+transform = Transform3D(0.9877267, 0, -1.4746592, -0.097022966, 1.7710422, -0.064985774, 1.4714662, 0.11677587, 0.985585, -6.0435486, -7.0474854, 3.7253723)
+material_override = SubResource("StandardMaterial3D_c6sy2")
+material_overlay = SubResource("ShaderMaterial_26xuy")
+mesh = ExtResource("10_udxuc")
+
+[node name="Line_3" parent="Panel_2/PaperStack2" unique_id=795175124 instance=ExtResource("2_dwbse")]
+transform = Transform3D(-0.06364751, -0.5596867, -0.0116830515, 0.005623714, -0.012396927, 0.56325126, -0.559781, 0.063512444, 0.0069870334, -0.10442042, 0.04688573, 0.5483346)
+no_depth_test = true
+text = "Because a decade of seniority doesn't equate to political leverage, for someone of her birth and station. And as the royal family's unofficial bridge of communication – responsibility that's been foisted upon her for over a year, and occurring now with disturbing regularity – it's easier to enforce their commands when Chaeyeon's letters are delivered with their official approval.
+"
+font_size = 22
+line_spacing = 20.0
+width = 443.33
+
+[node name="PaperStack3" type="MeshInstance3D" parent="Panel_2" unique_id=372362972]
+transform = Transform3D(0.5047979, 0.012982937, -1.295033, -0.07722121, 1.3877587, -0.016187938, 1.2927939, 0.07782421, 0.504705, -5.526, -6.9694552, 1.2270002)
+material_override = SubResource("StandardMaterial3D_c6sy2")
+material_overlay = SubResource("ShaderMaterial_wukud")
+mesh = ExtResource("10_udxuc")
+
+[node name="Line_4" parent="Panel_2/PaperStack3" unique_id=2083528097 instance=ExtResource("2_dwbse")]
+transform = Transform3D(-0.0035849647, -0.5580025, -0.07782784, 0.00914843, -0.07787675, 0.55793256, -0.5633304, 0.0022863413, 0.009556055, -0.29057622, 0.03461933, 0.48919487)
+no_depth_test = true
+text = "To be addressed immediately: 
+
+Stop Summoning Even Minor Gods in the Public Square, please and thank you.
+"
+font_size = 30
+line_spacing = 20.0
+width = 443.33
+
+[node name="Sprite3D" type="Sprite3D" parent="Panel_2/PaperStack3" unique_id=174313282]
+transform = Transform3D(0.00225118, -0.07491687, -0.0027197034, 0.0004003317, -0.0027088784, 0.074949995, -0.07496515, -0.0022641756, 0.00031858007, 0.356, 0.05, -0.181)
+modulate = Color(1, 1, 0.7764706, 1)
+alpha_cut = 1
+texture = ExtResource("14_26xuy")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Panel_2/PaperStack3" unique_id=146377763]
+transform = Transform3D(-0.00052415876, -0.30948222, -0.01790208, 0.007289976, -0.017909458, 0.30939636, -0.30991384, 0.000102152524, 0.007308082, 0.652, 0.072, -0.515)
+modulate = Color(1, 1, 0.7764706, 1)
+alpha_cut = 1
+texture = ExtResource("15_bc84e")
+
+[node name="PaperStack4" type="MeshInstance3D" parent="Panel_2" unique_id=31915172]
+transform = Transform3D(1.405486, -0.0064776368, 1.0838789, 0.06861397, 1.7718275, -0.07838366, -1.0817263, 0.10397075, 1.4033108, -8.261776, -7.352279, 3.688013)
+material_override = SubResource("StandardMaterial3D_c6sy2")
+material_overlay = SubResource("ShaderMaterial_wukud")
+mesh = ExtResource("10_udxuc")
+
+[node name="PaperStack5" type="MeshInstance3D" parent="Panel_2" unique_id=2072576942]
+transform = Transform3D(-1.7606908, 0.0030332804, -0.22402719, -0.027315028, 1.7585802, 0.23848563, 0.22237715, 0.24002609, -1.7444645, -5.342373, -7.192016, 2.4043522)
+material_override = SubResource("StandardMaterial3D_c6sy2")
+material_overlay = SubResource("ShaderMaterial_wukud")
+mesh = ExtResource("10_udxuc")
+
+[node name="PaperStack6" type="MeshInstance3D" parent="Panel_2" unique_id=792168666]
+transform = Transform3D(1.772558, 0.04969507, 0.076143384, -0.039626192, 1.7599711, -0.22618094, -0.08183676, 0.22418413, 1.7587676, -6.806698, -7.3641353, 4.953516)
+material_override = SubResource("StandardMaterial3D_c6sy2")
+material_overlay = SubResource("ShaderMaterial_wukud")
+mesh = ExtResource("10_udxuc")
+
+[node name="Cam_1" type="Camera3D" parent="Panel_2" unique_id=585141239 groups=["cameras"]]
+transform = Transform3D(0.08367787, -0.99649286, -4.3558085e-08, 0, -4.371139e-08, 1, -0.99649286, -0.08367787, -3.657676e-09, -8.016, -5.232, 1.84)
+
+[node name="Cam_2" type="Camera3D" parent="Panel_2" unique_id=1916504336 groups=["cameras"]]
+transform = Transform3D(0.637424, -0.7588074, 0.13379826, 0, 0.17364822, 0.9848077, -0.77051324, -0.6277401, 0.11068755, -5.63, -4.866, 3.235)
+
+[node name="StoryManager" type="Node" parent="." unique_id=1750701168 node_paths=PackedStringArray("text_layer", "camera", "stage_light", "current_script")]
+script = ExtResource("1_fj7yv")
+text_layer = NodePath("../TextLayer")
+NARRATIVE_TEXT = ExtResource("2_dwbse")
+camera = NodePath("../Panel_0/Cam_0")
+stage_light = NodePath("../Panel_0/Light_0")
+current_script = NodePath("Test 0")
+
+[node name="Test 0" parent="StoryManager" unique_id=1356330160 instance=ExtResource("11_k3n1d")]
+
+[node name="TextLayer" type="Node3D" parent="." unique_id=1188056677]
+
+[node name="ColorPalette" type="MeshInstance3D" parent="." unique_id=46474280]
+transform = Transform3D(1, 1.4901161e-08, 0, 0, 1, 0, 7.450581e-09, -9.313226e-10, 1.0000001, -0.6982727, -0.77801514, -0.010131836)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_gbfbk")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1260896303]
+script = ExtResource("13_hiqwa")
+
+[node name="MainMenu" type="Control" parent="GUI" unique_id=677173328]
 unique_name_in_owner = true
 visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuBG" type="PanelContainer" parent="GUI/MainMenu" unique_id=4114112]
+layout_mode = 0
+offset_right = 961.0
+offset_bottom = 542.0
+
+[node name="MainMenuOptions" type="SubViewportContainer" parent="GUI/MainMenu" unique_id=1622648694 groups=["main_menu"]]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 448.0
 offset_top = 23.0
-offset_bottom = -5.0
+offset_right = 920.0
+offset_bottom = 495.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/MainMenu" unique_id=1295027065]
+[node name="SubViewport" type="SubViewport" parent="GUI/MainMenu/MainMenuOptions" unique_id=1295027065]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 physics_object_picking = true
 render_target_update_mode = 0
 
-[node name="BooksMenu" parent="CanvasLayer/MainMenu/SubViewport" unique_id=718823562 instance=ExtResource("3_036b0")]
+[node name="BooksMenu" parent="GUI/MainMenu/MainMenuOptions/SubViewport" unique_id=718823562 instance=ExtResource("3_036b0")]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/MainMenu/SubViewport" unique_id=900626378]
+[node name="Camera3D" type="Camera3D" parent="GUI/MainMenu/MainMenuOptions/SubViewport" unique_id=900626378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43234962, 0, 0.58603114)
+
+[node name="ContextPopUp" type="PanelContainer" parent="GUI" unique_id=1181347892]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(40, 32)
+custom_maximum_size = Vector2(280, -1)
+offset_right = 280.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/ContextPopUp" unique_id=1342104051]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.5921569, 0.8039216, 0.1764706, 1)
+theme_override_fonts/normal_font = ExtResource("13_2o6r5")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "not even a combustion spell could [p]erase this eyesore"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Panel_0/SignetRing/PopUpArea" to="Panel_0/SignetRing/PopUpArea" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel_0/SignetRing/PopUpArea" to="Panel_0/SignetRing/PopUpArea" method="_on_mouse_exited"]
+[connection signal="input_event" from="Panel_0/Line_0/Area3D" to="Panel_0/Line_0/Area3D" method="_on_input_event"]
+[connection signal="mouse_entered" from="Panel_0/Line_0/Area3D" to="Panel_0/Line_0/Area3D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel_0/Line_0/Area3D" to="Panel_0/Line_0/Area3D" method="_on_mouse_exited"]

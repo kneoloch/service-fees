@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://co60rbuob5q11"]
+
+[ext_resource type="Script" uid="uid://ove1133mlkaw" path="res://scripts/interaction/pop_up_context.gd" id="1_lmifw"]
+
+[node name="PopUpContextArea" type="Area3D" unique_id=1702465147]
+script = ExtResource("1_lmifw")
+pop_up_text = "if only it would just spontaneously combust"
+metadata/_custom_type_script = "uid://ove1133mlkaw"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

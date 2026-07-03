@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://canrq1bq1l4ln"]
+
+[node name="Light" type="DirectionalLight3D" unique_id=1015164176 groups=["stage_light"]]
+sky_mode = 1

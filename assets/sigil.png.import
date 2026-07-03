@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djat804gg43s7"
-path.s3tc="res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.s3tc.ctex"
+uid="uid://de74o8is17cj2"
+path.s3tc="res://.godot/imported/sigil.png-2263b885dfb23499baddc2ae57e2fa77.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://index.icon.png"
-dest_files=["res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.s3tc.ctex"]
+source_file="res://assets/sigil.png"
+dest_files=["res://.godot/imported/sigil.png-2263b885dfb23499baddc2ae57e2fa77.s3tc.ctex"]
 
 [params]
 

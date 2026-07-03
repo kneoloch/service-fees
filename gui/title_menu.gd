@@ -11,9 +11,10 @@ func _return(_visible: bool) -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", Vector3(0.8, 0, 0), 2.5).set_trans(Tween.TRANS_ELASTIC)
 	await get_tree().create_timer(2.5).timeout
-	for item: Node in get_tree().get_nodes_in_group("main_menu"):
-		item.hide()
-		Story.paused = false
+	Story.pause.emit()
+	#for item: Node in get_tree().get_nodes_in_group("main_menu"):
+		#item.hide()
+		#Story.pause.emit(false)
 
 func _on_return_area_mouse_entered() -> void:
 	return_option.material.set("albedo_color", starting_color + Color(0.5, 0.5, 0.5))

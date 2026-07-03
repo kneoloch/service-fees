@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djat804gg43s7"
-path.s3tc="res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.s3tc.ctex"
+uid="uid://dscf5i26ofu2h"
+path.s3tc="res://.godot/imported/erase.png-03ab4d3db604595332d7331b41e2ab65.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://index.icon.png"
-dest_files=["res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.s3tc.ctex"]
+source_file="res://assets/erase.png"
+dest_files=["res://.godot/imported/erase.png-03ab4d3db604595332d7331b41e2ab65.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djat804gg43s7"
-path.s3tc="res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.s3tc.ctex"
+uid="uid://dd8vq66aw36es"
+path.s3tc="res://.godot/imported/seoyeon_signature.png-0e1f80ab48771e97637c79320934ac57.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://index.icon.png"
-dest_files=["res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.s3tc.ctex"]
+source_file="res://assets/seoyeon_signature.png"
+dest_files=["res://.godot/imported/seoyeon_signature.png-0e1f80ab48771e97637c79320934ac57.s3tc.ctex"]
 
 [params]
 

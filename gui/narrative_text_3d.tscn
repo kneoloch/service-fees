@@ -5,7 +5,7 @@
 [node name="NarrativeText3D" type="Label3D" unique_id=963429866]
 alpha_cut = 1
 texture_filter = 1
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.05882353, 0.02745098, 0, 1)
 text = "text"
 font = ExtResource("1_yntdq")
 font_size = 64
